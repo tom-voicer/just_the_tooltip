@@ -473,7 +473,11 @@ abstract class JustTheTooltipState<T> extends State<JustTheInterface>
       _hideTimer ??= Timer(
         hoverShowDuration,
         () async {
-          await _animationController.reverse();
+          try {
+            await _animationController.reverse();
+          } catch (err) {
+            // print(err);
+          }
           completer.complete();
         },
       );
